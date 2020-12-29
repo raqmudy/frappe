@@ -1,6 +1,6 @@
 {% extends "templates/web.html" %}
 
-{% set title = "About Us" %}
+{% set title = "" %}
 {% block header %}<h1>About Us</h1>{% endblock %}
 {% block page_sidebar %}
 {% include "templates/includes/web_sidebar.html" %}
@@ -14,7 +14,7 @@
 			People always like to know who the are doing business with.
 			Be authentic and avoid using jargon like 'value added services' etc.
 			Be sure to update your company history and
-			list of key team members in Website > About Us Settings</p>""" }}
+			list of key team members in Website About Us Settings</p>""" }}
 
 	{% if doc.get({"doctype":"Company History"}) %}
 	<div class="about-section">
