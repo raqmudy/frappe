@@ -237,14 +237,10 @@ frappe.ui.form.Form = class FrappeForm {
 					throw "attach error";
 				}
 
-				if(me.attachments.max_reached()) {
-					frappe.msgprint(__("Maximum Attachment Limit for this record reached."));
-					throw "attach error";
-				}
-
 				new frappe.ui.FileUploader({
 					doctype: me.doctype,
 					docname: me.docname,
+					frm: me,
 					files: dataTransfer.files,
 					folder: 'Home/Attachments',
 					on_success(file_doc) {
@@ -517,13 +513,8 @@ frappe.ui.form.Form = class FrappeForm {
 		let me = this;
 		return new Promise((resolve, reject) => {
 			btn && $(btn).prop("disabled", true);
-			$(document.activeElement).blur();
-
 			frappe.ui.form.close_grid_form();
-			// let any pending js process finish
-			setTimeout(function() {
-				me.validate_and_save(save_action, callback, btn, on_error, resolve, reject);
-			}, 100);
+			me.validate_and_save(save_action, callback, btn, on_error, resolve, reject);
 		}).then(() => {
 			me.show_success_action();
 		}).catch((e) => {
