@@ -4,11 +4,14 @@
  "docstatus": 0,
  "doctype": "Website Theme",
  "idx": 26,
- "modified": "2020-07-02 11:52:39.961415",
- "modified_by": "Administrator",
+ "js": "",
+ "modified": "2020-12-16 13:21:04.692047",
+ "modified_by": "mrosero@clickcg.co",
  "module": "Website",
  "name": "Standard",
  "owner": "Administrator",
  "theme": "Standard",
- "theme_scss": ""
+ "theme_json": "{\"google_font\":\"Open Sans\",\"font_size\":16,\"navbar_style\":\"Light\",\"enable_shadows\":1,\"enable_gradients\":1,\"enable_rounded\":1}",
+ "theme_scss": "@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700&subset=latin,latin-ext');\n$font-family-sans-serif: \"Open Sans\", '-apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif';\n$enable-shadows: true;\n$enable-gradients: true;\n$enable-rounded: true;\n\n\nbody {\n\tfont-size: 16px;\n}\n@import \"frappe/public/scss/website\";\n\n\n@import \"erpnext/public/scss/website\";",
+ "theme_url": "/files/website_theme/standard_style.css"
 }
