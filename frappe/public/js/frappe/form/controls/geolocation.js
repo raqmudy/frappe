@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 frappe.provide('frappe.utils.utils');
 
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 frappe.ui.form.ControlGeolocation = frappe.ui.form.ControlData.extend({
 	horizontal: false,
 

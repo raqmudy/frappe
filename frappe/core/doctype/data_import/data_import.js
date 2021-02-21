@@ -345,12 +345,16 @@ frappe.ui.form.on('Data Import', {
 				let message = warnings_by_row[row_number]
 					.map(w => {
 						if (w.field) {
+<<<<<<< HEAD
 							let label =
 								w.field.label +
 								(w.field.parent !== frm.doc.reference_doctype
 									? ` (${w.field.parent})`
 									: '');
 							return `<li>${label}: ${w.message}</li>`;
+=======
+							return `<li>${w.field.label}: ${w.message}</li>`;
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 						}
 						return `<li>${w.message}</li>`;
 					})

@@ -94,7 +94,11 @@ class TestAPI(unittest.TestCase):
 		self.assertTrue(doc["title"] == changed_title)
 
 	def test_update_child_doc(self):
+<<<<<<< HEAD
 		server = FrappeClient(get_url(), "Administrator", "admin", verify=False)
+=======
+		server = FrappeClient(frappe.get_site_config().host_name, "Administrator", "admin", verify=False)
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		frappe.db.sql("delete from `tabContact` where first_name = 'George' and last_name = 'Steevens'")
 		frappe.db.sql("delete from `tabContact` where first_name = 'William' and last_name = 'Shakespeare'")
 		frappe.db.sql("delete from `tabCommunication` where reference_doctype = 'Event'")

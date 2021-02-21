@@ -8,7 +8,11 @@ def get_first_party_apps():
 	"""Get list of all apps under orgs: frappe. erpnext from GitHub"""
 	apps = []
 	for org in ["frappe", "erpnext"]:
+<<<<<<< HEAD
 		req = requests.get(f"https://api.github.com/users/{org}/repos", {"type": "sources", "per_page": 200})
+=======
+		req = requests.get("https://api.github.com/users/{0}/repos".format(org), {"type": "sources", "per_page": 200})
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		if req.ok:
 			apps.extend([x["name"] for x in req.json()])
 	return apps

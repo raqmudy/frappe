@@ -10,7 +10,10 @@ import frappe
 from six import iteritems
 from past.builtins import cmp
 from frappe.utils import md_to_html
+<<<<<<< HEAD
 
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 
 def delete_page_cache(path):
 	cache = frappe.cache()

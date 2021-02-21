@@ -19,12 +19,15 @@ def get_jenv():
 
 		jenv.globals.update(get_safe_globals())
 		jenv.globals.update(get_jenv_customization('methods'))
+<<<<<<< HEAD
 		jenv.globals.update({
 			'resolve_class': resolve_class,
 			'inspect': inspect,
 			'web_blocks': web_blocks,
 			'web_block': web_block
 		})
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 
 		frappe.local.jenv = jenv
 
@@ -164,6 +167,7 @@ def get_jenv_customization(customization_type):
 		out[fn_name] = frappe.get_attr(fn_string)
 
 	return out
+<<<<<<< HEAD
 
 
 def resolve_class(classes):
@@ -228,3 +232,5 @@ def web_blocks(blocks):
 		html += '<script>{}</script>'.format(script)
 
 	return html
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886

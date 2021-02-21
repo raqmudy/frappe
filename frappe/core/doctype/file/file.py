@@ -30,7 +30,12 @@ import frappe
 from frappe import _, conf
 from frappe.model.document import Document
 from frappe.utils import call_hook_method, cint, cstr, encode, get_files_path, get_hook_method, random_string, strip
+<<<<<<< HEAD
 from frappe.utils.image import strip_exif_data
+=======
+from frappe.permissions import has_web_form_permission
+
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 
 class MaxFileSizeReachedError(frappe.ValidationError):
 	pass
@@ -136,8 +141,11 @@ class File(Document):
 					frappe.db.set_value(self.attached_to_doctype, self.attached_to_name,
 						self.attached_to_field, self.file_url)
 
+<<<<<<< HEAD
 		self.validate_url()
 
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		if self.file_url and (self.is_private != self.file_url.startswith('/private')):
 			frappe.throw(_('Invalid file URL. Please contact System Administrator.'))
 
@@ -778,7 +786,11 @@ def has_permission(doc, ptype=None, user=None):
 			ref_doc = frappe.get_doc(attached_to_doctype, attached_to_name)
 
 			if ptype in ['write', 'create', 'delete']:
+<<<<<<< HEAD
 				has_access = ref_doc.has_permission('write')
+=======
+				has_access = ref_doc.has_permission('write') or has_web_form_permission(attached_to_doctype, attached_to_name, ptype='write')
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 
 				if ptype == 'delete' and not has_access:
 					frappe.throw(_("Cannot delete file as it belongs to {0} {1} for which you do not have permissions").format(
@@ -962,6 +974,7 @@ def update_existing_file_docs(doc):
 		content_hash=doc.content_hash,
 		file_name=doc.name
 	))
+<<<<<<< HEAD
 
 def attach_files_to_document(doc, event):
 	""" Runs on on_update hook of all documents.
@@ -999,3 +1012,5 @@ def attach_files_to_document(doc, event):
 			).insert()
 		except Exception:
 			frappe.log_error(title=_("Error Attaching File"))
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886

@@ -61,7 +61,10 @@
   "column_break_18",
   "disable_standard_email_footer",
   "hide_footer_in_auto_email_reports",
+<<<<<<< HEAD
   "attach_view_link",
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
   "prepared_report_section",
   "enable_prepared_report_auto_deletion",
   "prepared_report_expiry_period",
@@ -411,6 +414,7 @@
    "label": "Allow Guests to Upload Files"
   },
   {
+<<<<<<< HEAD
    "default": "4",
    "description": "Will run scheduled jobs only once a day for inactive sites. Default 4 days if set to 0.",
    "fieldname": "dormant_days",
@@ -444,6 +448,9 @@
   },
   {
    "default": "30",
+=======
+   "default": "7",
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
    "depends_on": "enable_prepared_report_auto_deletion",
    "description": "System will automatically delete Prepared Reports after these many days since creation",
    "fieldname": "prepared_report_expiry_period",
@@ -461,18 +468,25 @@
    "fieldname": "prepared_report_section",
    "fieldtype": "Section Break",
    "label": "Prepared Report"
+<<<<<<< HEAD
   },
   {
    "default": "1",
    "fieldname": "strip_exif_metadata_from_uploaded_images",
    "fieldtype": "Check",
    "label": "Strip EXIF tags from uploaded images"
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
   }
  ],
  "icon": "fa fa-cog",
  "issingle": 1,
+<<<<<<< HEAD
  "links": [],
  "modified": "2020-11-30 18:52:22.161391",
+=======
+ "modified": "2020-07-26 15:57:34.197718",
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
  "modified_by": "Administrator",
  "module": "Core",
  "name": "System Settings",

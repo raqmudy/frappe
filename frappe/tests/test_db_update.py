@@ -1,7 +1,10 @@
 import unittest
 import frappe
 
+<<<<<<< HEAD
 from frappe.utils import cstr
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 from frappe.core.utils import find
 from frappe.custom.doctype.property_setter.property_setter import make_property_setter
 
@@ -32,7 +35,11 @@ class TestDBUpdate(unittest.TestCase):
 			default = field_def.default if field_def.default is not None else fallback_default
 
 			self.assertEqual(fieldtype, table_column.type)
+<<<<<<< HEAD
 			self.assertIn(cstr(table_column.default) or 'NULL', [cstr(default), "'{}'".format(default)])
+=======
+			self.assertIn(table_column.default or 'NULL', [default, "'{}'".format(default)])
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 
 def get_fieldtype_from_def(field_def):
 	fieldtuple = frappe.db.type_map.get(field_def.fieldtype, ('', 0))

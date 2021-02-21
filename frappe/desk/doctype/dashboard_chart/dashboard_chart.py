@@ -6,6 +6,7 @@ from __future__ import unicode_literals
 import frappe
 from frappe import _
 import datetime
+<<<<<<< HEAD
 import json
 from frappe.utils.dashboard import cache_source
 from frappe.utils import nowdate, getdate, get_datetime, cint, now_datetime
@@ -14,6 +15,12 @@ from frappe.utils.dateutils import\
 from frappe.model.naming import append_number_if_name_exists
 from frappe.boot import get_allowed_reports
 from frappe.config import get_modules_from_all_apps_for_user
+=======
+from frappe.core.page.dashboard.dashboard import cache_source
+from frappe.utils import getdate
+from frappe.utils.dateutils import\
+	get_period, get_period_beginning, get_from_date_from_timespan, get_dates_from_timegrain
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 from frappe.model.document import Document
 from frappe.modules.export_file import export_to_files
 
@@ -167,6 +174,7 @@ def get_chart_config(chart, filters, timespan, timegrain, from_date, to_date):
 		from_date = get_from_date_from_timespan(to_date, timespan)
 		from_date = get_period_beginning(from_date, timegrain)
 	if not to_date:
+<<<<<<< HEAD
 		to_date = now_datetime()
 
 	doctype = chart.document_type
@@ -192,6 +200,35 @@ def get_chart_config(chart, filters, timespan, timegrain, from_date, to_date):
 		ignore_ifnull = True
 	)
 
+=======
+		to_date = datetime.datetime.now()
+
+	# get conditions from filters
+	conditions, values = frappe.db.build_conditions(filters)
+	# query will return year, unit and aggregate value
+	data = frappe.db.sql('''
+		select
+			{unit} as _unit,
+			{aggregate_function}({value_field})
+		from `tab{doctype}`
+		where
+			{conditions}
+			and {datefield} BETWEEN '{from_date}' and '{to_date}'
+		group by _unit
+		order by _unit asc
+	'''.format(
+		unit = chart.based_on,
+		datefield = chart.based_on,
+		aggregate_function = get_aggregate_function(chart.chart_type),
+		value_field = chart.value_based_on or '1',
+		doctype = chart.document_type,
+		conditions = conditions,
+		from_date = from_date.strftime('%Y-%m-%d'),
+		to_date = to_date
+	), values)
+
+	# add missing data points for periods where there was no result
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 	result = get_result(data, timegrain, from_date, to_date)
 
 	chart_config = {
@@ -287,10 +324,17 @@ def get_aggregate_function(chart_type):
 		"Average": "AVG",
 	}[chart_type]
 
+<<<<<<< HEAD
 
 def get_result(data, timegrain, from_date, to_date):
 	dates = get_dates_from_timegrain(from_date, to_date, timegrain)
 	result = [[date, 0] for date in dates]
+=======
+def get_result(data, timegrain, from_date, to_date):
+	dates = get_dates_from_timegrain(from_date, to_date, timegrain)
+	result = [[date, 0] for date in dates]
+
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 	data_index = 0
 	if data:
 		for i, d in enumerate(result):
@@ -300,6 +344,7 @@ def get_result(data, timegrain, from_date, to_date):
 
 	return result
 
+<<<<<<< HEAD
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def get_charts_for_user(doctype, txt, searchfield, start, page_len, filters):
@@ -310,6 +355,8 @@ def get_charts_for_user(doctype, txt, searchfield, start, page_len, filters):
 		or_filters=or_filters,
 		as_list = 1)
 
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 class DashboardChart(Document):
 
 	def on_update(self):

@@ -1,8 +1,11 @@
 import os
 
+<<<<<<< HEAD
 import frappe
 
 
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 def setup_database(force, source_sql=None, verbose=False):
 	root_conn = get_root_connection()
 	root_conn.commit()
@@ -46,6 +49,14 @@ def import_db_from_sql(source_sql=None, verbose=False):
 	# bootstrap db
 	if not source_sql:
 		source_sql = os.path.join(os.path.dirname(__file__), 'framework_postgres.sql')
+<<<<<<< HEAD
+=======
+
+	subprocess.check_output([
+		'psql', frappe.conf.db_name, '-h', frappe.conf.db_host or 'localhost', '-U',
+		frappe.conf.db_name, '-f', source_sql
+	], env=subprocess_env)
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 
 	pv = which('pv')
 

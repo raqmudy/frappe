@@ -43,6 +43,7 @@ context('Recorder', () => {
 		cy.get('.result-list').should('contain', '/api/method/frappe.desk.reportview.get');
 
 		cy.get('#page-recorder .primary-action').should('contain', 'Stop').click();
+		cy.wait(500);
 		cy.get('#page-recorder .btn-secondary').should('contain', 'Clear').click();
 		cy.get('.msg-box').should('contain', 'Inactive');
 	});
@@ -66,11 +67,18 @@ context('Recorder', () => {
 
 		// cy.get('.list-row-container span').contains('/api/method/frappe').click();
 
+<<<<<<< HEAD
 		// cy.location('hash').should('contain', '#recorder/request/');
 		// cy.get('form').should('contain', '/api/method/frappe');
 
 		// cy.get('#page-recorder .primary-action').should('contain', 'Stop').click();
 		// cy.get('#page-recorder .btn-secondary').should('contain', 'Clear').click();
 		// cy.location('hash').should('eq', '#recorder');
+=======
+		cy.get('#page-recorder .primary-action').should('contain', 'Stop').click();
+		cy.wait(200);
+		cy.get('#page-recorder .btn-secondary').should('contain', 'Clear').click();
+		cy.location('hash').should('eq', '#recorder');
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 	});
 });

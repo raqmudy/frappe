@@ -75,10 +75,13 @@ class TestSearch(unittest.TestCase):
 		kwargs = {'as_dict': False}
 		self.assertListEqual(frappe.call('frappe.tests.test_search.get_data', *args, **kwargs), [])
 
+<<<<<<< HEAD
 		# should not fail if query has @ symbol in it
 		search_link('User', 'user@random', searchfield='name')
 		self.assertListEqual(frappe.response['results'], [])
 
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 @frappe.validate_and_sanitize_search_inputs
 def get_data(doctype, txt, searchfield, start, page_len, filters):
 	return [doctype, txt, searchfield, start, page_len, filters]

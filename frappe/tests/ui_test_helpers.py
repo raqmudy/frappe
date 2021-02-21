@@ -79,6 +79,7 @@ def create_contact_phone_nos_records():
 	doc.insert()
 
 @frappe.whitelist()
+<<<<<<< HEAD
 def create_doctype(name, fields):
 	fields = frappe.parse_json(fields)
 	if frappe.db.exists('DocType', name):
@@ -96,6 +97,8 @@ def create_doctype(name, fields):
 	}).insert()
 
 @frappe.whitelist()
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 def create_contact_records():
 	if frappe.db.get_all('Contact', {'first_name': 'Test Form Contact 1'}):
 		return

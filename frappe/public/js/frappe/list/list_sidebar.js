@@ -167,7 +167,11 @@ frappe.views.ListSidebar = class ListSidebar {
 				reference_doctype: doctype
 			}
 		}).then(result => {
+<<<<<<< HEAD
 			if (!(result && Array.isArray(result) && result.length)) return;
+=======
+			if (!(Array.isArray(result) && result.length)) return;
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 			const calendar_views = result;
 			const $link_calendar = this.sidebar.find('.list-link[data-view="Calendar"]');
 
@@ -217,7 +221,11 @@ frappe.views.ListSidebar = class ListSidebar {
 			let email_account = (account.email_id == "All Accounts") ? "All Accounts" : account.email_account;
 			let route = ["List", "Communication", "Inbox", email_account].join('/');
 			let display_name = ["All Accounts", "Sent Mail", "Spam", "Trash"].includes(account.email_id) ? __(account.email_id) : account.email_id;
+<<<<<<< HEAD
 
+=======
+			
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 			if (!divider) {
 				this.get_divider().appendTo($dropdown);
 				divider = true;
@@ -249,6 +257,13 @@ frappe.views.ListSidebar = class ListSidebar {
 		});
 	}
 
+<<<<<<< HEAD
+=======
+	get_cat_tags() {
+		return this.cat_tags;
+	}
+
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 	get_stats() {
 		var me = this;
 		frappe.call({

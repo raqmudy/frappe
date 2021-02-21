@@ -28,9 +28,12 @@ def is_email_notifications_enabled_for_type(user, notification_type):
 	if not is_email_notifications_enabled(user):
 		return False
 
+<<<<<<< HEAD
 	if notification_type == 'Alert':
 		return False
 
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 	fieldname = 'enable_email_' + frappe.scrub(notification_type)
 	enabled = frappe.db.get_value('Notification Settings', user, fieldname)
 	if enabled is None:

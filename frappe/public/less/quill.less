@@ -3,8 +3,12 @@
 @import (less) 'quill/dist/quill.bubble.css';
 @import (less) '../js/frappe/form/controls/quill-mention/quill.mention.css';
 
+<<<<<<< HEAD
 .ql-toolbar.ql-snow,
 .ql-container.ql-snow {
+=======
+.ql-toolbar.ql-snow, .ql-container.ql-snow {
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 	border-color: @border-color;
 	font-family: inherit;
 }
@@ -12,12 +16,16 @@
 .ql-editor {
 	font-family: @font-stack;
 	line-height: 1.6;
+<<<<<<< HEAD
 
 	h1,
 	h2,
 	h3,
 	h4,
 	h5 {
+=======
+	h1, h2, h3, h4, h5 {
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		margin-top: 0.5em;
 		margin-bottom: 0.25em;
 	}
@@ -46,10 +54,13 @@
 
 .ql-snow .ql-picker-label {
 	outline: none;
+<<<<<<< HEAD
 }
 
 .ql-formats {
 	margin-bottom: 8px;
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 }
 
 .ql-bubble .ql-editor {
@@ -78,7 +89,11 @@
 	}
 }
 
+<<<<<<< HEAD
 .ql-editor:not(.read-mode) .mention {
+=======
+.ql-editor .mention {
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 	height: auto;
 	width: auto;
 	border-radius: 10px;
@@ -134,6 +149,36 @@
 	margin-bottom: 0px;
 }
 
+<<<<<<< HEAD
 .ql-editor.read-mode {
 	padding: 0;
 }
+=======
+.ql-editor ol {
+	padding-left: 2.5em;
+}
+
+.ql-editor li[data-list=ordered] {
+	list-style-type: decimal;
+	padding-left: 0;
+	padding-right: 0;
+
+	&::before {
+		content: none;
+	}
+}
+
+// RTL alignment
+.ql-formats {
+	text-align: left;
+	margin-bottom: 8px;
+}
+
+.ql-container {
+	direction: ltr;
+}
+
+.ql-editor ol li.ql-direction-rtl {
+	padding-right: 0;
+}
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886

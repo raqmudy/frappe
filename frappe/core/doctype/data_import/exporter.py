@@ -8,7 +8,10 @@ from frappe.model import (
 	no_value_fields,
 	table_fields as table_fieldtypes,
 )
+<<<<<<< HEAD
 from frappe.utils import flt, format_duration
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 from frappe.utils.csvutils import build_csv_response
 from frappe.utils.xlsxutils import build_xlsx_response
 
@@ -147,6 +150,7 @@ class Exporter:
 			if df.parent == doctype:
 				if df.is_child_table_field and df.child_table_df.fieldname != parentfield:
 					continue
+<<<<<<< HEAD
 				value = doc.get(df.fieldname, None)
 
 				if df.fieldtype == "Duration":
@@ -154,6 +158,10 @@ class Exporter:
 					value = format_duration(value, df.hide_days)
 
 				row[i] = value
+=======
+				row[i] = doc.get(df.fieldname, "")
+
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		return rows
 
 	def get_data_as_docs(self):

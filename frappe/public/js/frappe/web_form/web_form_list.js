@@ -54,8 +54,12 @@ export default class WebFormList {
 						label: __(field.label),
 						onchange: (event) => {
 							$('#more').remove();
+<<<<<<< HEAD
 							this.add_filter(field.fieldname, input.value, field.fieldtype);
 							this.refresh();
+=======
+							this.add_filter(field.fieldname, input.value, field.fieldtype)
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 						}
 					},
 					parent: col,
@@ -70,10 +74,14 @@ export default class WebFormList {
 
 	add_filter(field, value, fieldtype) {
 		if (!value) {
+<<<<<<< HEAD
 			delete this.filters[field];
 		} else {
 			if (fieldtype === 'Data') value = ['like', value + '%'];
 			Object.assign(this.filters, Object.fromEntries([[field, value]]));
+=======
+			delete this.filters[field]
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		}
 	}
 

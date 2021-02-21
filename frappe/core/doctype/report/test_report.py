@@ -49,7 +49,11 @@ class TestReport(unittest.TestCase):
 				'name': 'Email'
 			}]))
 		custom_report = frappe.get_doc('Report', custom_report_name)
+<<<<<<< HEAD
 		columns, result = custom_report.run_query_report(
+=======
+		columns, result = custom_report.get_data(
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 			filters={
 				'user': 'Administrator',
 				'doctype': 'User'
@@ -162,6 +166,7 @@ data = [
 
 		# check values
 		self.assertTrue('System User' in [d.get('type') for d in data[1]])
+<<<<<<< HEAD
 
 	def test_script_report_with_columns(self):
 		report_name = 'Test Script Report With Columns'
@@ -195,6 +200,8 @@ result = [
 
 		report.save()
 		data = report.get_data()
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 
 		# check columns
 		self.assertEqual(data[0][0]['label'], 'Type')

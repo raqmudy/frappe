@@ -130,6 +130,7 @@
    "fieldtype": "Select",
    "label": "Naming Series",
    "options": "\nHOOK-.####"
+<<<<<<< HEAD
   },
   {
    "fieldname": "sb_security",
@@ -151,6 +152,12 @@
  ],
  "links": [],
  "modified": "2020-01-13 01:53:04.459968",
+=======
+  }
+ ],
+ "links": [],
+ "modified": "2020-01-06 02:51:07.997566",
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
  "modified_by": "Administrator",
  "module": "Integrations",
  "name": "Webhook",

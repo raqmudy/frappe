@@ -167,7 +167,11 @@ class TestDashboardChart(unittest.TestCase):
 			time_interval = 'Daily',
 			from_date = datetime(2019, 1, 6),
 			to_date = datetime(2019, 1, 11),
+<<<<<<< HEAD
 			filters_json = '[]',
+=======
+			filters_json = '{}',
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 			timeseries = 1
 		)).insert()
 
@@ -198,7 +202,11 @@ class TestDashboardChart(unittest.TestCase):
 			time_interval = 'Weekly',
 			from_date = datetime(2018, 12, 30),
 			to_date = datetime(2019, 1, 15),
+<<<<<<< HEAD
 			filters_json = '[]',
+=======
+			filters_json = '{}',
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 			timeseries = 1
 		)).insert()
 
@@ -227,4 +235,8 @@ def create_new_communication(date, rating):
 		'rating': rating,
 		'communication_date': date
 	}
+<<<<<<< HEAD
 	frappe.get_doc(communication).insert()
+=======
+	frappe.get_doc(communication).insert()
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886

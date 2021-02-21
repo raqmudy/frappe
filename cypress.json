@@ -2,6 +2,10 @@
   "baseUrl": "http://test_site_ui:8000",
   "projectId": "92odwv",
   "adminPassword": "admin",
+<<<<<<< HEAD
   "defaultCommandTimeout": 20000,
+=======
+  "defaultCommandTimeout": 10000,
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
   "pageLoadTimeout": 15000
 }

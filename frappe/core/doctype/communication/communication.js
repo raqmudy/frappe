@@ -168,6 +168,7 @@ frappe.ui.form.on("Communication", {
 			primary_action_label: __("Move"),
 			primary_action(values) {
 				d.hide();
+<<<<<<< HEAD
 				frappe.call({
 					method: "frappe.email.inbox.move_email",
 					args: {
@@ -179,6 +180,10 @@ frappe.ui.form.on("Communication", {
 						window.history.back();
 					}
 				});
+=======
+				frm.set_value('email_account', values.email_account);
+				frm.save(null, () => frappe.set_route("List", "Communication"));
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 			}
 		});
 		d.show();
@@ -199,6 +204,7 @@ frappe.ui.form.on("Communication", {
 			callback: function() {
 				frm.reload_doc();
 			}
+<<<<<<< HEAD
 		});
 	},
 
@@ -215,7 +221,15 @@ frappe.ui.form.on("Communication", {
 			callback: function() {
 				frm.reload_doc();
 			}
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		});
+	},
+
+	mark_as_closed_open: function(frm) {
+		var status = frm.doc.status == "Open" ? "Closed" : "Open";
+		frm.set_value("status", status);
+		frm.save();
 	},
 
 	reply: function(frm) {

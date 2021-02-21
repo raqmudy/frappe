@@ -52,7 +52,10 @@ def take_backup_to_dropbox(retry_count=0, upload_db_backup=True):
 	try:
 		if cint(frappe.db.get_value("Dropbox Settings", None, "enabled")):
 			validate_file_size()
+<<<<<<< HEAD
 
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 			did_not_upload, error_log = backup_to_dropbox(upload_db_backup)
 			if did_not_upload: raise Exception
 
@@ -72,7 +75,10 @@ def take_backup_to_dropbox(retry_count=0, upload_db_backup=True):
 		else:
 			file_and_error = [" - ".join(f) for f in zip(did_not_upload, error_log)]
 			error_message = ("\n".join(file_and_error) + "\n" + frappe.get_traceback())
+<<<<<<< HEAD
 
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		send_email(False, "Dropbox", "Dropbox Settings", "send_notifications_to", error_message)
 
 def backup_to_dropbox(upload_db_backup=True):
@@ -97,7 +103,11 @@ def backup_to_dropbox(upload_db_backup=True):
 		if frappe.flags.create_new_backup:
 			backup = new_backup(ignore_files=True)
 			filename = os.path.join(get_backups_path(), os.path.basename(backup.backup_path_db))
+<<<<<<< HEAD
 			site_config = os.path.join(get_backups_path(), os.path.basename(backup.backup_path_conf))
+=======
+			site_config = os.path.join(get_backups_path(), os.path.basename(backup.site_config_backup_path))
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		else:
 			filename, site_config = get_latest_backup_file()
 

@@ -126,6 +126,7 @@ frappe.ui.form.ControlInput = frappe.ui.form.Control.extend({
 		let display_value = frappe.format(value, this.df, { no_icon: true, inline: true }, doc);
 		this.disp_area && $(this.disp_area).html(display_value);
 	},
+<<<<<<< HEAD
 
 	bind_change_event: function() {
 		var me = this;
@@ -133,6 +134,8 @@ frappe.ui.form.ControlInput = frappe.ui.form.Control.extend({
 			me.parse_validate_and_set_in_model(me.get_input_value(), e);
 		});
 	},
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 	set_label: function(label) {
 		if(label) this.df.label = label;
 

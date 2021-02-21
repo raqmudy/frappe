@@ -9,10 +9,20 @@ from distutils.spawn import find_executable
 import click
 
 import frappe
+<<<<<<< HEAD
 from frappe.commands import get_site, pass_context
 from frappe.exceptions import SiteNotSpecifiedError
 from frappe.utils import get_bench_path, update_progress_bar
 
+=======
+from frappe.exceptions import SiteNotSpecifiedError
+from frappe.commands import pass_context, get_site
+from frappe.utils import update_progress_bar, get_bench_path
+from frappe.utils.response import json_handler
+from coverage import Coverage
+import cProfile, pstats
+from six import StringIO
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 
 @click.command('build')
 @click.option('--app', help='Build assets for app')
@@ -668,6 +678,8 @@ def set_config(context, key, value, global_ = False, as_dict=False):
 			frappe.init(site=site)
 			update_site_config(key, value, validate=False)
 			frappe.destroy()
+		else:
+			raise SiteNotSpecifiedError
 
 
 @click.command('version')

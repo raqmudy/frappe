@@ -9,8 +9,12 @@ import json
 from frappe.model.document import Document
 from frappe.desk.doctype.notification_log.notification_log import enqueue_create_notification,\
 	get_title, get_title_html
+<<<<<<< HEAD
 from frappe.desk.doctype.notification_settings.notification_settings\
 	import is_email_notifications_enabled_for_type, is_email_notifications_enabled
+=======
+from frappe.desk.doctype.notification_settings.notification_settings import is_email_notifications_enabled_for_type
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 from frappe.utils import cint, get_fullname, getdate, get_link_to_form
 
 class EnergyPointLog(Document):

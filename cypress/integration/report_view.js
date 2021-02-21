@@ -4,7 +4,11 @@ const doctype_name = custom_submittable_doctype.name;
 context('Report View', () => {
 	before(() => {
 		cy.login();
+<<<<<<< HEAD
 		cy.visit('/desk#workspace/Website');
+=======
+		cy.visit('/desk');
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		cy.insert_doc('DocType', custom_submittable_doctype, true);
 		cy.clear_cache();
 		cy.insert_doc(doctype_name, {

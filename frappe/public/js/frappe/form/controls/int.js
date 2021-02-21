@@ -1,4 +1,8 @@
 frappe.ui.form.ControlInt = frappe.ui.form.ControlData.extend({
+<<<<<<< HEAD
+=======
+	trigger_change_on_input_event: false,
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 	make: function () {
 		this._super();
 		// $(this.label_area).addClass('pull-right');
@@ -19,10 +23,14 @@ frappe.ui.form.ControlInt = frappe.ui.form.ControlData.extend({
 				return false;
 			});
 	},
+<<<<<<< HEAD
 	validate: function (value) {
 		return this.parse(value);
 	},
 	eval_expression: function (value) {
+=======
+	eval_expression: function(value) {
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		if (typeof value === 'string') {
 			if (value.match(/^[0-9+\-/* ]+$/)) {
 				// If it is a string containing operators

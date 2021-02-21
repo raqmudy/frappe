@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 frappe.ui.form.ControlDate = frappe.ui.form.ControlData.extend({
+	trigger_change_on_input_event: false,
 	make_input: function() {
 		this._super();
 		this.make_picker();

@@ -1,7 +1,44 @@
 import Quill from 'quill';
 import ImageResize from 'quill-image-resize';
 
+<<<<<<< HEAD
 Quill.register('modules/imageResize', ImageResize);
+=======
+// specify the fonts you want
+const fonts = ['Arial', 'Courier', 'Times New Roman', 'Verdana'];
+// generate code friendly names
+function get_font_name(font) {
+	return font.toLowerCase().replace(/\s/g, "-");
+}
+let font_names = fonts.map(font => get_font_name(font));
+// add fonts to style
+let font_styles = "";
+fonts.forEach(function(font) {
+	let font_name = get_font_name(font);
+	font_styles += `
+		.ql-snow .ql-picker.ql-font
+		.ql-picker-label[data-value=${font_name}]::before,
+		.ql-snow .ql-picker.ql-font
+		.ql-picker-item[data-value=${font_name}]::before {
+				content: '${font}';
+				font-family: ${font}, sans-serif;
+		}
+		.ql-font-${font_name} {
+			font-family: ${font}, sans-serif;
+		}
+	`;
+});
+const node = document.createElement('style');
+node.innerHTML = font_styles;
+document.body.appendChild(node);
+
+
+// replace <p> tag with <div>
+const Block = Quill.import('blots/block');
+Block.tagName = 'DIV';
+Quill.register(Block, true);
+
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 const CodeBlockContainer = Quill.import('formats/code-block-container');
 CodeBlockContainer.tagName = 'PRE';
 Quill.register(CodeBlockContainer, true);
@@ -52,6 +89,7 @@ Quill.register(FontStyle, true);
 Quill.register(AlignStyle, true);
 Quill.register(DirectionStyle, true);
 
+<<<<<<< HEAD
 // replace font tag with span
 const Inline = Quill.import('blots/inline');
 
@@ -67,6 +105,12 @@ CustomColor.blotName = "customColor";
 CustomColor.tagName = "font";
 
 Quill.register(CustomColor, true);
+=======
+//Adding fonts in text editor
+const Font = Quill.import('attributors/class/font');
+Font.whitelist = font_names;
+Quill.register(Font, true);
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 
 frappe.ui.form.ControlTextEditor = frappe.ui.form.ControlCode.extend({
 	make_wrapper() {
@@ -157,10 +201,17 @@ frappe.ui.form.ControlTextEditor = frappe.ui.form.ControlCode.extend({
 	get_toolbar_options() {
 		return [
 			[{ 'header': [1, 2, 3, false] }],
+			// Adding Font dropdown to give the user the ability to change text font.
+			[{ 'font': font_names }],
 			['bold', 'italic', 'underline'],
 			[{ 'color': [] }, { 'background': [] }],
 			['blockquote', 'code-block'],
 			['link', 'image'],
+<<<<<<< HEAD
+=======
+			// Adding Direction tool to give the user the ability to change text direction.
+			[{ 'direction': "rtl" }],
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 			[{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
 			[{ 'align': [] }],
 			[{ 'indent': '-1'}, { 'indent': '+1' }],

@@ -33,7 +33,11 @@ def login_via_salesforce(code, state):
 
 @frappe.whitelist(allow_guest=True)
 def login_via_fairlogin(code, state):
+<<<<<<< HEAD
 	login_via_oauth2("fairlogin", code, state, decoder=decoder_compat)	
+=======
+	login_via_oauth2("fairlogin", code, state, decoder=decoder_compat)
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 
 @frappe.whitelist(allow_guest=True)
 def custom(code, state):

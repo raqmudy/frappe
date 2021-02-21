@@ -101,7 +101,10 @@ frappe.data_import.ImportPreview = class ImportPreview {
 					.replace('%H', 'HH')
 					.replace('%M', 'mm')
 					.replace('%S', 'ss')
+<<<<<<< HEAD
 					.replace('%b', 'Mon')
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 				: null;
 
 			let column_title = `<span class="indicator green">

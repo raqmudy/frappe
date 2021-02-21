@@ -23,6 +23,7 @@ def execute():
 
 	for doc in assignments:
 		assignments = doc.assignees.split(',')
+<<<<<<< HEAD
 		frappe.db.set_value(
 			doc.reference_type,
 			doc.reference_name,
@@ -30,3 +31,16 @@ def execute():
 			frappe.as_json(assignments),
 			update_modified=False
 		)
+=======
+		try:
+			frappe.db.set_value(
+				doc.reference_type,
+				doc.reference_name,
+				'_assign',
+				frappe.as_json(assignments),
+				update_modified=False
+			)
+
+		except frappe.db.ProgrammingError:
+			pass
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886

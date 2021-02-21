@@ -733,12 +733,21 @@ Object.assign(frappe.utils, {
 			for (let i = 0; i < $elements.length; i++) {
 				const text_element = $elements.eq(i).find(text_class);
 				const text = text_element.text().toLowerCase();
+<<<<<<< HEAD
 
 				let name = '';
 				if (data_attr && text_element.attr(data_attr)) {
 					name = text_element.attr(data_attr).toLowerCase();
 				}
 
+=======
+
+				let name = '';
+				if (data_attr && text_element.attr(data_attr)) {
+					name = text_element.attr(data_attr).toLowerCase();
+				}
+
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 				if (text.includes(text_filter) || name.includes(text_filter)) {
 					$elements.eq(i).css('display', '');
 				} else {

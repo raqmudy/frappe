@@ -891,6 +891,7 @@ def get_between_date_filter(value, df=None):
 			frappe.db.format_date(to_date))
 
 	return data
+<<<<<<< HEAD
 
 def get_additional_filter_field(additional_filters_config, f, value):
 	additional_filter = additional_filters_config[f.operator.lower()]
@@ -918,3 +919,5 @@ def get_date_range(operator, value):
 	timespan = period_map[operator] + ' ' + timespan_map[value] if operator != 'timespan' else value
 
 	return get_timespan_date_range(timespan)
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886

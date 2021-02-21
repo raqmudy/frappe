@@ -1,6 +1,7 @@
 # Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 # MIT License. See license.txt
 
+<<<<<<< HEAD
 import json
 import os
 import sys
@@ -87,12 +88,26 @@ def _new_site(
 		"disabled" if frappe.utils.scheduler.is_scheduler_disabled() else "enabled"
 	)
 	print("*** Scheduler is", scheduler_status, "***")
+=======
+from __future__ import print_function, unicode_literals
+
+import json
+import os
+
+import frappe
+import frappe.database
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 
 
 def install_db(root_login="root", root_password=None, db_name=None, source_sql=None,
 			   admin_password=None, verbose=True, force=0, site_config=None, reinstall=False,
+<<<<<<< HEAD
 			   db_password=None, db_type=None, db_host=None, db_port=None, no_mariadb_socket=False):
 	import frappe.database
+=======
+			   db_type=None, db_host=None, db_port=None,
+			   db_password=None, no_mariadb_socket=False):
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 	from frappe.database import setup_database
 
 	if not db_type:
@@ -117,7 +132,10 @@ def install_db(root_login="root", root_password=None, db_name=None, source_sql=N
 
 
 def install_app(name, verbose=False, set_as_patched=True):
+<<<<<<< HEAD
 	from frappe.core.doctype.scheduled_job_type.scheduled_job_type import sync_jobs
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 	from frappe.model.sync import sync_for
 	from frappe.modules.utils import sync_customizations
 	from frappe.utils.fixtures import sync_fixtures
@@ -190,6 +208,8 @@ def add_to_installed_apps(app_name, rebuild_website=True):
 
 
 def remove_from_installed_apps(app_name):
+	from frappe.defaults import _clear_cache
+
 	installed_apps = frappe.get_installed_apps()
 	if app_name in installed_apps:
 		installed_apps.remove(app_name)
@@ -204,6 +224,7 @@ def remove_app(app_name, dry_run=False, yes=False, no_backup=False, force=False)
 	"""Remove app and all linked to the app's module with the app from a site."""
 	import click
 
+<<<<<<< HEAD
 	site = frappe.local.site
 
 	# dont allow uninstall app if not installed unless forced
@@ -219,18 +240,34 @@ def remove_app(app_name, dry_run=False, yes=False, no_backup=False, force=False)
 			"All doctypes (including custom), modules related to this app will be"
 			" deleted. Are you sure you want to continue?"
 		)
+=======
+	# dont allow uninstall app if not installed unless forced
+	if not force:
+		if app_name not in frappe.get_installed_apps():
+			click.secho("App {0} not installed on Site {1}".format(app_name, frappe.local.site), fg="yellow")
+			return
+
+	print("Uninstalling App {0} from Site {1}...".format(app_name, frappe.local.site))
+
+	if not dry_run and not yes:
+		confirm = click.confirm("All doctypes (including custom), modules related to this app will be deleted. Are you sure you want to continue?")
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		if not confirm:
 			return
 
 	if not (dry_run or no_backup):
 		from frappe.utils.backups import scheduled_backup
+<<<<<<< HEAD
 
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		print("Backing up...")
 		scheduled_backup(ignore_files=True)
 
 	frappe.flags.in_uninstall = True
 	drop_doctypes = []
 
+<<<<<<< HEAD
 	modules = frappe.get_all("Module Def", filters={"app_name": app_name}, pluck="name")
 	for module_name in modules:
 		print(f"Deleting Module '{module_name}'")
@@ -239,6 +276,14 @@ def remove_app(app_name, dry_run=False, yes=False, no_backup=False, force=False)
 			"DocType", filters={"module": module_name}, fields=["name", "issingle"]
 		):
 			print(f"* removing DocType '{doctype.name}'...")
+=======
+	modules = (x.name for x in frappe.get_all("Module Def", filters={"app_name": app_name}))
+	for module_name in modules:
+		print("Deleting Module '{0}'".format(module_name))
+
+		for doctype in frappe.get_all("DocType", filters={"module": module_name}, fields=["name", "issingle"]):
+			print("* removing DocType '{0}'...".format(doctype.name))
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 
 			if not dry_run:
 				frappe.delete_doc("DocType", doctype.name, ignore_on_trash=True)
@@ -246,6 +291,7 @@ def remove_app(app_name, dry_run=False, yes=False, no_backup=False, force=False)
 				if not doctype.issingle:
 					drop_doctypes.append(doctype.name)
 
+<<<<<<< HEAD
 		linked_doctypes = frappe.get_all(
 			"DocField", filters={"fieldtype": "Link", "options": "Module Def"}, fields=["parent"]
 		)
@@ -265,19 +311,43 @@ def remove_app(app_name, dry_run=False, yes=False, no_backup=False, force=False)
 					frappe.delete_doc(doctype, record, ignore_on_trash=True, force=True)
 
 		print(f"* removing Module Def '{module_name}'...")
+=======
+		linked_doctypes = frappe.get_all("DocField", filters={"fieldtype": "Link", "options": "Module Def"}, fields=['parent'])
+		ordered_doctypes = ["Report", "Page", "Web Form"]
+		doctypes_with_linked_modules = ordered_doctypes + [doctype.parent for doctype in linked_doctypes if doctype.parent not in ordered_doctypes]
+
+		for doctype in doctypes_with_linked_modules:
+			for record in frappe.get_all(doctype, filters={"module": module_name}):
+				print("* removing {0} '{1}'...".format(doctype, record.name))
+				if not dry_run:
+					frappe.delete_doc(doctype, record, ignore_on_trash=True, force=True)
+
+		print("* removing Module Def '{0}'...".format(module_name))
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		if not dry_run:
 			frappe.delete_doc("Module Def", module_name, ignore_on_trash=True, force=True)
 
 	for doctype in set(drop_doctypes):
+<<<<<<< HEAD
 		print(f"* dropping Table for '{doctype}'...")
 		if not dry_run:
 			frappe.db.sql_ddl(f"drop table `tab{doctype}`")
+=======
+		print("* dropping Table for '{0}'...".format(doctype))
+		if not dry_run:
+			frappe.db.sql_ddl("drop table `tab{0}`".format(doctype))
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 
 	if not dry_run:
 		remove_from_installed_apps(app_name)
 		frappe.db.commit()
 
+<<<<<<< HEAD
 	click.secho(f"Uninstalled App {app_name} from Site {site}", fg="green")
+=======
+	click.secho("Uninstalled App {0} from Site {1}".format(app_name, frappe.local.site), fg="green")
+
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 	frappe.flags.in_uninstall = False
 
 
@@ -312,7 +382,10 @@ def init_singles():
 			doc.flags.ignore_validate=True
 			doc.save()
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 def make_conf(db_name=None, db_password=None, site_config=None, db_type=None, db_host=None, db_port=None):
 	site = frappe.local.site
 	make_site_config(db_name, db_password, site_config, db_type=db_type, db_host=db_host, db_port=db_port)
@@ -320,7 +393,10 @@ def make_conf(db_name=None, db_password=None, site_config=None, db_type=None, db
 	frappe.destroy()
 	frappe.init(site, sites_path=sites_path)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 def make_site_config(db_name=None, db_password=None, site_config=None, db_type=None, db_host=None, db_port=None):
 	frappe.create_folder(os.path.join(frappe.local.site_path))
 	site_file = get_site_config_path()
@@ -377,6 +453,8 @@ def get_site_config_path():
 
 
 def get_conf_params(db_name=None, db_password=None):
+	from six.moves import input
+
 	if not db_name:
 		db_name = input("Database Name: ")
 		if not db_name:
@@ -429,6 +507,7 @@ def remove_missing_apps():
 				frappe.db.set_global("installed_apps", json.dumps(installed_apps))
 
 
+<<<<<<< HEAD
 def extract_sql_from_archive(sql_file_path):
 	"""Return the path of an SQL file if the passed argument is the path of a gzipped
 	SQL file or an SQL file path. The path may be absolute or relative from the bench
@@ -451,6 +530,8 @@ def extract_sql_from_archive(sql_file_path):
 	return decompressed_file_name
 
 
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 def extract_sql_gzip(sql_gz_path):
 	import subprocess
 
@@ -465,6 +546,7 @@ def extract_sql_gzip(sql_gz_path):
 
 	return decompressed_file
 
+<<<<<<< HEAD
 
 def extract_files(site_name, file_path):
 	import shutil
@@ -473,6 +555,13 @@ def extract_files(site_name, file_path):
 
 	file_path = get_bench_relative_path(file_path)
 
+=======
+
+def extract_tar_files(site_name, file_path, folder_name):
+	import shutil
+	import subprocess
+
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 	# Need to do frappe.init to maintain the site locals
 	frappe.init(site=site_name)
 	abs_site_path = os.path.abspath(frappe.get_site_path())
@@ -499,12 +588,15 @@ def extract_files(site_name, file_path):
 
 def is_downgrade(sql_file_path, verbose=False):
 	"""checks if input db backup will get downgraded on current bench"""
+<<<<<<< HEAD
 
 	# This function is only tested with mariadb
 	# TODO: Add postgres support
 	if frappe.conf.db_type not in (None, "mariadb"):
 		return False
 
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 	from semantic_version import Version
 	head = "INSERT INTO `tabInstalled Application` VALUES"
 
@@ -536,6 +628,7 @@ def is_downgrade(sql_file_path, verbose=False):
 							print("Your site will be downgraded from Frappe {0} to {1}".format(current_version, backup_version))
 
 						return downgrade
+<<<<<<< HEAD
 
 
 def is_partial(sql_file_path):
@@ -602,3 +695,5 @@ def validate_database_sql(path, _raise=True):
 
 	if _raise and (missing_table or empty_file):
 		raise frappe.InvalidDatabaseFile
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886

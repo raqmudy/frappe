@@ -6,7 +6,11 @@ import frappe
 
 
 def frappecloud_migrator(local_site):
+<<<<<<< HEAD
 	print("Retrieving Site Migrator...")
+=======
+	print("Retreiving Site Migrator...")
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 	remote_site = frappe.conf.frappecloud_url or "frappecloud.com"
 	request_url = "https://{}/api/method/press.api.script".format(remote_site)
 	request = requests.get(request_url)

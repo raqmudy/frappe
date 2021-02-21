@@ -200,6 +200,15 @@ def get_quarter_start(dt, as_str=False):
 	first_date_of_quarter = datetime.date(date.year, ((quarter - 1) * 3) + 1, 1)
 	return first_date_of_quarter.strftime(DATE_FORMAT) if as_str else first_date_of_quarter
 
+<<<<<<< HEAD
+=======
+def get_quarter_start(dt, as_str=False):
+	date = getdate(dt)
+	quarter = (date.month - 1) // 3 + 1
+	first_date_of_quarter = datetime.date(date.year, ((quarter - 1) * 3) + 1, 1)
+	return first_date_of_quarter.strftime(DATE_FORMAT) if as_str else first_date_of_quarter
+
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 def get_first_day_of_week(dt, as_str=False):
 	dt = getdate(dt)
 	date = dt - datetime.timedelta(days=dt.weekday())
@@ -1321,16 +1330,26 @@ def is_subset(list_a, list_b):
 def generate_hash(*args, **kwargs):
 	return frappe.generate_hash(*args, **kwargs)
 
+<<<<<<< HEAD
 def guess_date_format(date_string):
 	DATE_FORMATS = [
 		r"%d/%b/%y",
+=======
+
+
+def guess_date_format(date_string):
+	DATE_FORMATS = [
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		r"%d-%m-%Y",
 		r"%m-%d-%Y",
 		r"%Y-%m-%d",
 		r"%d-%m-%y",
 		r"%m-%d-%y",
 		r"%y-%m-%d",
+<<<<<<< HEAD
 		r"%y-%b-%d",
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
 		r"%d/%m/%Y",
 		r"%m/%d/%Y",
 		r"%Y/%m/%d",
@@ -1395,9 +1414,12 @@ def guess_date_format(date_string):
 
 		if date_format and time_format:
 			return (date_format + ' ' + time_format).strip()
+<<<<<<< HEAD
 
 def validate_json_string(string):
 	try:
 		json.loads(string)
 	except (TypeError, ValueError):
 		raise frappe.ValidationError
+=======
+>>>>>>> c86f945bdab2473f784e9ca5ecf8f1b0d9624886
